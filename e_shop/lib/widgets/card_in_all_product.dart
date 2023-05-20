@@ -1,3 +1,4 @@
+import 'package:e_shop/Controllers/firebase_auth.dart';
 import 'package:e_shop/constants/colors.dart';
 import 'package:e_shop/constants/constants.dart';
 import 'package:e_shop/models/product_model.dart';
@@ -36,6 +37,16 @@ Widget cardAll(ProductModel data, context) {
               ],
             ),
           ),
+
+
+     StreamBuilder(
+                      stream: FirebaseAuthHelper.instance.getAuthChange,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return 
+                 
+
+
           Positioned(
             right: 0,
             bottom: 0,
@@ -53,7 +64,33 @@ Widget cardAll(ProductModel data, context) {
                 ),
               ),
             ),
-          ),
+          );       }
+                        return   Positioned(
+            right: 0,
+            bottom: 0,
+            child: CircleAvatar(
+              backgroundColor: Palette.col,
+              child: IconButton(
+                onPressed: () {
+               successMessage(
+                              "If you want to add to cart a product, you must first login");
+                },
+                icon: const Icon(
+                  LineIcons.addToShoppingCart,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          );  
+                      },
+                    ),
+
+
+
+
+
+
+
         ],
       ),
       Padding(

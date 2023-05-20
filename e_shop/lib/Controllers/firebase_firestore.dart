@@ -175,8 +175,6 @@ class FirebaseFirestoreMethod {
           .collection("WishList")
           .doc(id)
           .delete();
-
-      successMessage("Product deleted from wishlist successfully");
       return true;
     } catch (e) {
       errorMessage("Error deleting product from wishlist: $e");

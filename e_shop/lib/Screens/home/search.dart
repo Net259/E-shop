@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:e_shop/Controllers/firebase_auth.dart';
 import 'package:e_shop/Controllers/firebase_firestore.dart';
 import 'package:e_shop/Screens/home/detail_product.dart';
 import 'package:e_shop/constants/colors.dart';
@@ -157,6 +158,15 @@ class _SearchState extends State<Search> {
                                     ),
                                   ),
                                 ),
+
+
+
+
+   StreamBuilder(
+                      stream: FirebaseAuthHelper.instance.getAuthChange,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return 
                                 Positioned(
                                   bottom: 40,
                                   child: CircleAvatar(
@@ -175,7 +185,37 @@ class _SearchState extends State<Search> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                );  }
+                        return  Positioned(
+                                  bottom: 40,
+                                  child: CircleAvatar(
+                                    backgroundColor: Palette.col,
+                                    child: IconButton(
+                                      onPressed: () {
+                                       successMessage(
+                              "If you want to add to cart a product, you must first login");
+                                      },
+                                      icon: const Icon(
+                                        LineIcons.addToShoppingCart,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                      },
+                    ),
+
+
+
+
+
+
+
+
+
+
+
+
                                 Positioned(
                                   bottom: 20,
                                   child: CustomText(

@@ -154,16 +154,31 @@ class _CartState extends State<Cart> {
 
                 return Scaffold(
                   body: Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Palette.col,
-                      ),
-                      onPressed: () {
-                        Routes.instance
-                            .push(widget: const Login(), context: context);
-                      },
-                      child: const CustomText(
-                          text: 'Login', color: Colors.white, size: 16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                           FadeInUp(
+                                      delay: const Duration(milliseconds: 200),
+                                      child: const Image(
+                                        image: AssetImage(
+                                            "assets/img/login.png"),
+                                        fit: BoxFit.cover,
+                                        height: 200,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10,),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Palette.col,
+                          ),
+                          onPressed: () {
+                            Routes.instance
+                                .push(widget: const Login(), context: context);
+                          },
+                          child: const CustomText(
+                              text: 'Login', color: Colors.white, size: 16),
+                        ),
+                      ],
                     ),
                   ),
                 );
