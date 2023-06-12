@@ -42,109 +42,111 @@ class _CheckoutState extends State<Checkout> {
               color: Colors.white,
               size: 16,
             )),
-        body: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 36,
-              ),
-              Container(
-                height: 80,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Palette.col, width: 2)),
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Radio(
-                      activeColor: Palette.col,
-                      value: 1,
-                      groupValue: groupValue,
-                      onChanged: (value) {
-                        setState(() {
-                          groupValue = 1;
-                        });
-                      },
-                    ),
-                    const Icon(LineIcons.wavyMoneyBill),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Text(
-                      "Cash on Delivery",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 36,
+                ),
+                Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Palette.col, width: 2)),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Radio(
+                        activeColor: Palette.col,
+                        value: 1,
+                        groupValue: groupValue,
+                        onChanged: (value) {
+                          setState(() {
+                            groupValue = 1;
+                          });
+                        },
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              Container(
-                height: 80,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Palette.col, width: 2)),
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Radio(value: 2, groupValue: groupValue, onChanged: null),
-                    const Icon(LineIcons.wavyMoneyBill),
-                    const SizedBox(
-                      width: 12.0,
-                    ),
-                    const Text(
-                      "FastPay",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+                      const Icon(LineIcons.wavyMoneyBill),
+                      const SizedBox(
+                        width: 12.0,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const SizedBox(
-                height: 100,
-                width: double.infinity,
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Palette.col,
-                ),
-                width: double.infinity,
-                height: 40,
-                child: OutlinedButton(
-                  child: const Text(
-                    "Buy",
-                    style: TextStyle(
-                      fontFamily: 'merienda',
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+                      const Text(
+                        "Cash on Delivery",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () async {
-                    appProvider.clearBuyProduct();
-                    appProvider.addBuyProduct(widget.singleProduct);
-
-                    if (groupValue == 1) {
-                      await FirebaseFirestoreMethod.instance
-                          .uploadOrderedProductFirebase(
-                              appProvider.getBuyProductList,
-                              context,
-                              "Cash on delivery");
-                    } else {}
-                  },
                 ),
-              )
-            ],
+                const SizedBox(
+                  height: 24.0,
+                ),
+                Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Palette.col, width: 2)),
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Radio(value: 2, groupValue: groupValue, onChanged: null),
+                      const Icon(LineIcons.wavyMoneyBill),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      const Text(
+                        "FastPay For Future",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const SizedBox(
+                  height: 100,
+                  width: double.infinity,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: Palette.col,
+                  ),
+                  width: double.infinity,
+                  height: 40,
+                  child: OutlinedButton(
+                    child: const Text(
+                      "Buy",
+                      style: TextStyle(
+                        fontFamily: 'merienda',
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () async {
+                      appProvider.clearBuyProduct();
+                      appProvider.addBuyProduct(widget.singleProduct);
+        
+                      if (groupValue == 1) {
+                        await FirebaseFirestoreMethod.instance
+                            .uploadOrderedProductFirebase(
+                                appProvider.getBuyProductList,
+                                context,
+                                "Cash on delivery");
+                      } else {}
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

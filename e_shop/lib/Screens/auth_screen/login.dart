@@ -84,6 +84,7 @@ class _LoginState extends State<Login> {
                                 TextFormField(
                                   controller: emailController,
                                   showCursor: true,
+                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor: Colors.white,
                                   decoration: const InputDecoration(
                                     labelText: "Email Address",

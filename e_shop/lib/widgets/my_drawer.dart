@@ -187,45 +187,43 @@ class _MyDrawerState extends State<MyDrawer> {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
-        return ThemeSwitchingArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                AnimatedTextKit(
-                  animatedTexts: [
-                    ColorizeAnimatedText(
-                      'E-Shop',
-                      textStyle: colorizeTextStyle,
-                      colors: colorizeColors,
-                      speed: const Duration(seconds: 1),
-                    ),
-                  ],
-                  isRepeatingAnimation: true,
-                  onTap: () async {},
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Palette.col,
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              AnimatedTextKit(
+                animatedTexts: [
+                  ColorizeAnimatedText(
+                    'E-Shop',
+                    textStyle: colorizeTextStyle,
+                    colors: colorizeColors,
+                    speed: const Duration(seconds: 1),
                   ),
-                  onPressed: () {
-                    Routes.instance
-                        .push(widget: const Login(), context: context);
-                  },
-                  child: const CustomText(
-                      text: 'Login', color: Colors.white, size: 16),
+                ],
+                isRepeatingAnimation: true,
+                onTap: () async {},
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Palette.col,
                 ),
-                const SizedBox(
-                  height: 130,
-                )
-              ],
-            ),
+                onPressed: () {
+                  Routes.instance
+                      .push(widget: const Login(), context: context);
+                },
+                child: const CustomText(
+                    text: 'Login', color: Colors.white, size: 16),
+              ),
+              const SizedBox(
+                height: 130,
+              )
+            ],
           ),
         );
       },

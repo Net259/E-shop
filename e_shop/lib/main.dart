@@ -49,6 +49,52 @@ class EShop extends StatelessWidget {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     //   StreamBuilder(
                     //   stream: FirebaseAuthHelper.instance.getAuthChange,
                     //   builder: (context, snapshot) {

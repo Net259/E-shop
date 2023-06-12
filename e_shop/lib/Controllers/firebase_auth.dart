@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Controllers/home_controller.dart';
 import 'package:e_shop/constants/constants.dart';
-import 'package:e_shop/constants/route.dart';
 import 'package:e_shop/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,36 +71,45 @@ class FirebaseAuthHelper {
     }
   }
 
-  Future<void> deleteAccount(BuildContext context) async {
-    try {
-      User? user = _auth.currentUser;
 
-      if (user != null) {
-        await _firestore.collection('users').doc(user.uid).delete();
-        await user.delete();
-        signOut();
-        // ignore: use_build_context_synchronously
-        Routes.instance.push(widget: const Home(), context: context);
+  Future<void> deleteAccount(BuildContext context) async {
+  try {
+    User? user = _auth.currentUser;
+
+    if (user != null) {
+      await _firestore.collection('users').doc(user.uid).delete();
+      await user.delete();
+
+      CollectionReference wishListCollection = FirebaseFirestore.instance
+          .collection("usersWishList")
+          .doc(user.email)
+          .collection("WishList");
+
+      QuerySnapshot snapshot = await wishListCollection.get();
+      for (DocumentSnapshot doc in snapshot.docs) {
+        await doc.reference.delete();
       }
-    } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content:
-                const Text('Failed to delete account. Please try again later.'),
-            actions: [
-              TextButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+////////////////
+            CollectionReference ordersCollection = FirebaseFirestore.instance
+          .collection("usersOrders")
+          .doc(user.email)
+          .collection("orders");
+
+      QuerySnapshot snapshot2 = await ordersCollection.get();
+      for (DocumentSnapshot doc in snapshot2.docs) {
+        await doc.reference.delete();
+      }
+
+      // ignore: use_build_context_synchronously
+       Navigator.of(context, rootNavigator: true).pop();
+      signOut();
     }
+  
+    
+  } catch (e) {
+    // errorMessage('Error: $e');
   }
+}
+
+
 }

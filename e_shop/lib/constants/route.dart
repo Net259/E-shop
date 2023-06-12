@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Routes {
   static Routes instance = Routes();
+
   Future<dynamic> pushAndRemoveUntil(
       {required Widget widget, required BuildContext context}) {
     return Navigator.of(context).pushAndRemoveUntil(
@@ -15,3 +16,9 @@ class Routes {
     );
   }
 }
+
+
+// Routes.instance
+                     //   .push(widget: const Login(), context: context);
+
+                     // Navigator.of(context).pop();

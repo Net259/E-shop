@@ -9,6 +9,7 @@ void errorMessage(String message) {
     textColor: Colors.red,
     fontSize: 16,
   );
+  // const Duration(seconds: 5);
 }
 
 void successMessage(String message) {

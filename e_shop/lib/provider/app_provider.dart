@@ -7,16 +7,47 @@ import 'package:e_shop/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class AppProvider with ChangeNotifier {
-  //// Cart Work
+  // Cart Work
   final List<ProductModel> _cartProductList = [];
   final List<ProductModel> _buyProductList = [];
   UserModel? _userModel;
   UserModel? get getUserInformation => _userModel;
 
   void addCartProduct(ProductModel productModel) {
-    _cartProductList.add(productModel);
+    // _cartProductList.add(productModel);
+    // notifyListeners();
+      int index =  _cartProductList.indexWhere((i) => i.id == productModel.id);
+    // print(index);
+    if (index != -1) {
+      updateProduct(productModel,productModel.qty! + 1);
+    } else {
+      _cartProductList.add(productModel);
+     
+      notifyListeners();
+    }
+  }
+
+
+
+  void updateProduct(product, qty) {
+    int index = _cartProductList.indexWhere((i) => i.id == product.id);
+   _cartProductList[index].qty = qty;
+    if (_cartProductList[index].qty == 0) {
+      removeCartProduct(product);
+    }
+
     notifyListeners();
   }
+
+
+
+
+
+
+
+
+
+
 
   void removeCartProduct(ProductModel productModel) {
     _cartProductList.remove(productModel);

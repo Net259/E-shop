@@ -138,6 +138,7 @@ class _SettingState extends State<Setting> {
                       );
                     },
                   );
+                  
                 },
                 leading: const Icon(
                   Icons.delete_rounded,
